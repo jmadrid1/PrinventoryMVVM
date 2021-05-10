@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph_vendor"
+    app:startDestination="@id/vendorFragment">
+
+    <fragment
+        android:id="@+id/vendorFragment"
+        android:name="com.example.prinventory_mvvm.ui.vendor.VendorFragment"
+        android:label="VendorFragment" >
+        <action
+            android:id="@+id/action_vendorFragment_to_vendorDetailFragment"
+            app:destination="@id/vendorDetailFragment" />
+        <argument
+            android:name="vendor"
+            app:argType="com.example.prinventory_mvvm.models.Vendor"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/vendorCreateFragment"
+        android:name="com.example.prinventory_mvvm.ui.vendor.VendorCreateFragment"
+        android:label="VendorCreateFragment"/>
+
+    <fragment
+        android:id="@+id/vendorDetailFragment"
+        android:name="com.example.prinventory_mvvm.ui.vendor.VendorDetailFragment"
+        android:label="VendorDetailFragment" >
+        <action
+            android:id="@+id/action_vendorDetailFragment_to_vendorEditFragment"
+            app:destination="@id/vendorEditFragment" />
+        <argument
+            android:name="vendor"
+            app:argType="com.example.prinventory_mvvm.models.Vendor"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/vendorEditFragment"
+        android:name="com.example.prinventory_mvvm.ui.vendor.VendorEditFragment"
+        android:label="VendorEditFragment">
+        <argument
+            android:name="vendor"
+            app:argType="com.example.prinventory_mvvm.models.Vendor"/>
+    </fragment>
+
+</navigation>

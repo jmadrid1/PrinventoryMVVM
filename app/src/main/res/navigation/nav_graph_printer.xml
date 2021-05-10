@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph_printer"
+    app:startDestination="@id/printerFragment">
+
+    <fragment
+        android:id="@+id/printerFragment"
+        android:name="com.example.prinventory_mvvm.ui.printer.PrinterFragment"
+        android:label="PrinterFragment" >
+        <action
+            android:id="@+id/action_printerFragment_to_printerDetailFragment"
+            app:destination="@id/printerDetailFragment" />
+        <argument
+            android:name="printer"
+            app:argType="com.example.prinventory_mvvm.models.Printer"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/printerCreateFragment"
+        android:name="com.example.prinventory_mvvm.ui.printer.PrinterCreateFragment"
+        android:label="PrinterCreateFragment" />
+
+    <fragment
+        android:id="@+id/printerDetailFragment"
+        android:name="com.example.prinventory_mvvm.ui.printer.PrinterDetailFragment"
+        android:label="PrinterDetailFragment" >
+        <action
+            android:id="@+id/action_printerDetailFragment_to_printerEditFragment"
+            app:destination="@id/printerEditFragment" />
+        <argument
+            android:name="printer"
+            app:argType="com.example.prinventory_mvvm.models.Printer"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/printerEditFragment"
+        android:name="com.example.prinventory_mvvm.ui.printer.PrinterEditFragment"
+        android:label="PrinterEditFragment">
+        <argument
+            android:name="printer"
+            app:argType="com.example.prinventory_mvvm.models.Printer"/>
+    </fragment>
+
+</navigation>

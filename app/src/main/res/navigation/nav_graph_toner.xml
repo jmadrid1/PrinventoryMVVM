@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph_toner"
+    app:startDestination="@id/tonerFragment">
+
+    <fragment
+        android:id="@+id/tonerFragment"
+        android:name="com.example.prinventory_mvvm.ui.toner.TonerFragment"
+        android:label="TonerFragment" >
+        <action
+            android:id="@+id/action_tonerFragment_to_tonerDetailFragment"
+            app:destination="@id/tonerDetailFragment" />
+        <argument
+            android:name="toner"
+            app:argType="com.example.prinventory_mvvm.models.Toner"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/tonerCreateFragment"
+        android:name="com.example.prinventory_mvvm.ui.toner.TonerCreateFragment"
+        android:label="TonerCreateFragment" />
+
+    <fragment
+        android:id="@+id/tonerDetailFragment"
+        android:name="com.example.prinventory_mvvm.ui.toner.TonerDetailFragment"
+        android:label="TonerDetailFragment" >
+        <action
+            android:id="@+id/action_tonerDetailFragment_to_tonerEditFragment"
+            app:destination="@id/tonerEditFragment" />
+        <argument
+            android:name="toner"
+            app:argType="com.example.prinventory_mvvm.models.Toner"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/tonerEditFragment"
+        android:name="com.example.prinventory_mvvm.ui.toner.TonerEditFragment"
+        android:label="TonerEditFragment">
+        <argument
+            android:name="toner"
+            app:argType="com.example.prinventory_mvvm.models.Toner"/>
+    </fragment>
+
+</navigation>

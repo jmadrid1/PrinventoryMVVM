@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_menu_printer"
+        android:icon="@drawable/dashboard_printer"
+        android:title="@string/nav_printer" />
+
+    <item
+        android:id="@+id/navigation_menu_toner"
+        android:icon="@drawable/dashboard_toner"
+        android:title="@string/nav_toner" />
+
+    <item
+        android:id="@+id/navigation_menu_vendor"
+        android:icon="@drawable/dashboard_vendor"
+        android:title="@string/nav_vendor" />
+
+</menu>

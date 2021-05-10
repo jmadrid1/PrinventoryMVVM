@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <FrameLayout
+        android:id="@+id/fragment_vendor_detail_frame_banner"
+        android:layout_width="match_parent"
+        android:layout_height="260dp"
+        android:background="@drawable/rounded_frame"
+        android:backgroundTint="@color/dark_blue"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <FrameLayout
+            android:id="@+id/fragment_vendor_detail_frame_icon"
+            android:layout_width="165dp"
+            android:layout_height="165dp"
+            android:background="@drawable/circular_shape"
+            android:backgroundTint="@color/white"
+            android:layout_gravity="center">
+
+            <ImageView
+                android:id="@+id/fragment_vendor_detail_imageview_icon"
+                android:layout_width="105dp"
+                android:layout_height="105dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_vendor" />
+
+        </FrameLayout>
+    </FrameLayout>
+
+    <ImageView
+        android:id="@+id/fragment_vendor_detail_imageview_close"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="25dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_close"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/fragment_vendor_detail_imageview_delete"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/ic_delete"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/fragment_vendor_detail_imageview_phone"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginLeft="60dp"
+        android:layout_marginBottom="20dp"
+        android:src="@drawable/ic_phone"
+        app:layout_constraintBottom_toBottomOf="@+id/fragment_vendor_detail_frame_banner"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/fragment_vendor_detail_imageview_message"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="60dp"
+        android:layout_marginRight="60dp"
+        android:layout_marginBottom="20dp"
+        android:src="@drawable/ic_message"
+        app:layout_constraintBottom_toBottomOf="@+id/fragment_vendor_detail_frame_banner"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/fragment_vendor_detail_textview_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="Tony"
+        android:textColor="@color/black"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_vendor_detail_frame_banner" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/fragment_vendor_detail_guideline_vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5"/>
+
+    <TextView
+        android:id="@+id/fragment_vendor_detail_textview_label_phone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginRight="15dp"
+        android:text="Phone:"
+        android:textAlignment="viewEnd"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/fragment_vendor_detail_guideline_vertical"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_vendor_detail_textview_name" />
+
+    <TextView
+        android:id="@+id/fragment_vendor_detail_textview_phone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="15dp"
+        android:text="6263481120"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@+id/fragment_vendor_detail_guideline_vertical"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_vendor_detail_textview_name" />
+
+    <TextView
+        android:id="@+id/fragment_vendor_detail_textview_label_email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginRight="15dp"
+        android:text="Email:"
+        android:textAlignment="viewEnd"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/fragment_vendor_detail_guideline_vertical"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_vendor_detail_textview_phone" />
+
+    <TextView
+        android:id="@+id/fragment_vendor_detail_textview_email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:text="jovel@gmail.com"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@+id/fragment_vendor_detail_guideline_vertical"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_vendor_detail_textview_phone" />
+
+    <TextView
+        android:id="@+id/fragment_vendor_detail_textview_label_street"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginRight="15dp"
+        android:text="Street:"
+        android:textAlignment="viewEnd"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/fragment_vendor_detail_guideline_vertical"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_vendor_detail_textview_label_email" />
+
+    <TextView
+        android:id="@+id/fragment_vendor_detail_textview_street"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:text="Engineering"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@+id/fragment_vendor_detail_guideline_vertical"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_vendor_detail_textview_email" />
+
+    <TextView
+        android:id="@+id/fragment_vendor_detail_textview_label_city"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginRight="15dp"
+        android:text="City:"
+        android:textAlignment="viewEnd"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/fragment_vendor_detail_guideline_vertical"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_vendor_detail_textview_label_street" />
+
+    <TextView
+        android:id="@+id/fragment_vendor_detail_textview_city"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:text="Arcadia"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@+id/fragment_vendor_detail_guideline_vertical"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_vendor_detail_textview_street" />
+
+    <TextView
+        android:id="@+id/fragment_vendor_detail_textview_label_state"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginRight="15dp"
+        android:text="State:"
+        android:textAlignment="viewEnd"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/fragment_vendor_detail_guideline_vertical"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_vendor_detail_textview_label_city" />
+
+    <TextView
+        android:id="@+id/fragment_vendor_detail_textview_state"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:text="CA"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@+id/fragment_vendor_detail_guideline_vertical"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_vendor_detail_textview_city" />
+
+    <TextView
+        android:id="@+id/fragment_vendor_detail_textview_label_zip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginRight="15dp"
+        android:text="Zip:"
+        android:textAlignment="viewEnd"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/fragment_vendor_detail_guideline_vertical"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_vendor_detail_textview_label_state" />
+
+    <TextView
+        android:id="@+id/fragment_vendor_detail_textview_zip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:text="91006"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@+id/fragment_vendor_detail_guideline_vertical"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_vendor_detail_textview_state" />
+
+    <Button
+        android:id="@+id/fragment_vendor_detail_button_edit"
+        android:layout_width="145dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="50dp"
+        android:background="@drawable/rounded_button"
+        android:backgroundTint="@color/dark_blue"
+        android:text="Edit vendor"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_vendor_detail_textview_zip" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

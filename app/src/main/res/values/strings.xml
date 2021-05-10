@@ -1,0 +1,88 @@
+<resources>
+    <string name="app_name">Prinventory-MVVM</string>
+
+    <string name="title_activity_printer">Printer Dashboard</string>
+    <string name="title_activity_toner">Toner Dashboard</string>
+    <string name="title_activity_vendor">Vendor Dashboard</string>
+
+    //Hints
+    <string name="hint_printer_make">Enter Make of Printer</string>
+    <string name="hint_printer_model">Enter Model of Printer</string>
+    <string name="hint_printer_serial">Enter Serial of Printer</string>
+    <string name="hint_printer_owner">Enter Owner of Printer</string>
+    <string name="hint_printer_dept">Enter Dept of Printer</string>
+    <string name="hint_printer_location">Enter Location of Printer</string>
+    <string name="hint_printer_floor">What Floor</string>
+    <string name="hint_printer_ip">Enter IP of Printer</string>
+
+    <string name="hint_toner_tmodel">Enter Model of Toner</string>
+
+    <string name="hint_vendor_name">Enter Name</string>
+    <string name="hint_vendor_phone">Enter Phone #</string>
+    <string name="hint_vendor_email">Enter Email </string>
+    <string name="hint_vendor_street">Enter Street Address</string>
+    <string name="hint_vendor_city">Enter City</string>
+    <string name="hint_vendor_state">Enter State </string>
+    <string name="hint_vendor_zipcode">Enter Zipcode</string>
+
+    //Buttons
+    <string name="btn_save">Save</string>
+    <string name="btn_update">Update</string>
+    <string name="btn_cancel">Cancel</string>
+    <string name="btn_close">Close</string>
+    <string name="btn_yes">Yes</string>
+    <string name="btn_no">No</string>
+
+    //Dialogs
+    <string name="dialog_title_save_printer">Add Printer</string>
+    <string name="dialog_title_update_printer">Edit Printer</string>
+    <string name="dialog_title_view_printer">"Detailed Information of Printer"</string>
+    <string name="dialog_title_delete_printer">Delete Printer</string>
+    <string name="dialog_message_delete_printer">Are you sure you want to delete this printer?</string>
+
+    <string name="dialog_title_save_toner">Add Toner</string>
+    <string name="dialog_title_update_toner">Edit Toner</string>
+    <string name="dialog_title_view_toner">"Detailed Information of Toner"</string>
+    <string name="dialog_title_delete_toner">Delete Toner</string>
+    <string name="dialog_message_delete_toner">Are you sure you want to delete this toner?</string>
+
+    <string name="dialog_title_save_vendor">Add Vendor</string>
+    <string name="dialog_title_update_vendor">Edit Vendor</string>
+
+    <string name="dialog_title_delete_vendor">Delete Vendor</string>
+    <string name="dialog_message_delete_vendor">Are you sure you want to delete this vendor?</string>
+
+    <string name="dialog_title_view_vendor">Detailed Information of Vendor</string>
+    <string name="dialog_title_network_status_vendor">Check Network Settings</string>
+    <string name="dialog_message_network_connection">Your device currently does not have internet connectivity. Please check your settings and try again.</string>
+
+    <string name="dialog_title_email_vendor">No Email Application Found</string>
+    <string name="dialog_message_email_vendor">There was no email application found or selected.</string>
+
+    <string name="dialog_title_call_vendor">Call Was Not Made</string>
+    <string name="dialog_message_call_vendor">Failed to make phone call.</string>
+
+    //list text
+    <string name="list_printer_empty">There are currently no printers in this list</string>
+    <string name="list_toner_empty">There are currently no toners in this list</string>
+    <string name="list_vendor_empty">There are currently no vendors in this list</string>
+
+    <string name="list_printer_design_make">Make:</string>
+    <string name="list_printer_design_model">Model:</string>
+    <string name="list_printer_design_dept">Dept:</string>
+    <string name="list_printer_design_ip">IP:</string>
+
+    <string name="list_toner_design_make">Make:</string>
+    <string name="list_toner_design_model">Model:</string>
+    <string name="list_toner_design_tmodel">TModel:</string>
+
+    <string name="list_vendor_design_name">Name:</string>
+    <string name="list_vendor_design_phone">Phone:</string>
+    <string name="list_vendor_design_email">Email:</string>
+
+    //navigation
+    <string name="nav_printer">Printers</string>
+    <string name="nav_toner">Toners</string>
+    <string name="nav_vendor">Vendors</string>
+
+</resources>

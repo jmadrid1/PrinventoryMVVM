@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="99dp"
+    android:background="@drawable/rounded_list_item"
+    android:layout_marginTop="7dp"
+    android:layout_marginLeft="7dp"
+    android:layout_marginRight="10dp">
+
+    <ImageView
+        android:id="@+id/row_toner_icon"
+        android:layout_width="68dp"
+        android:layout_height="68dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_toner" />
+
+    <TextView
+        android:id="@+id/row_toner_make"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/list_toner_design_make"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/row_toner_icon"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/row_toner_tmodel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="2dp"
+        android:text="@string/list_toner_design_tmodel"
+        android:textColor="@color/black"
+        android:textSize="14sp"
+        app:layout_constraintStart_toEndOf="@+id/row_toner_icon"
+        app:layout_constraintTop_toBottomOf="@+id/row_toner_make" />
+
+    <ImageView
+        android:id="@+id/row_toner_color"
+        android:layout_width="42dp"
+        android:layout_height="42dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.578"
+        app:srcCompat="@drawable/ic_toner_color" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

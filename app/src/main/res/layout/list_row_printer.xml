@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="99dp"
+    android:background="@drawable/rounded_list_item"
+    android:layout_marginTop="7dp"
+    android:layout_marginLeft="7dp"
+    android:layout_marginRight="10dp">
+
+    <ImageView
+        android:id="@+id/row_printer_icon"
+        android:layout_width="63dp"
+        android:layout_height="63dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:src="@drawable/ic_printer"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <FrameLayout
+        android:id="@+id/row_printer_frame_status"
+        android:layout_width="17dp"
+        android:layout_height="17dp"
+        android:layout_marginBottom="12dp"
+        android:background="@drawable/circular_shape"
+        android:backgroundTint="@color/status_red"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/row_printer_icon">
+
+        <ImageView
+            android:id="@+id/row_printer_imageview_status"
+            android:layout_width="9dp"
+            android:layout_height="9dp"
+            android:layout_gravity="center"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_close" />
+
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/row_printer_make"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/list_printer_design_make"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/row_printer_icon"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/row_printer_dept"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="5dp"
+        android:text="@string/list_printer_design_dept"
+        android:textSize="14sp"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toEndOf="@+id/row_printer_icon"
+        app:layout_constraintTop_toBottomOf="@+id/row_printer_make" />
+
+    <TextView
+        android:id="@+id/row_printer_ip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="5dp"
+        android:text="@string/list_printer_design_ip"
+        android:textSize="14sp"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toEndOf="@+id/row_printer_icon"
+        app:layout_constraintTop_toBottomOf="@+id/row_printer_dept" />
+
+    <ImageView
+        android:id="@+id/row_printer_color"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginBottom="8dp"
+        android:src="@drawable/ic_toner_color"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.578" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

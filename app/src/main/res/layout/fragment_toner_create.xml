@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/cardview_light_background"
+    android:backgroundTint="@color/orange"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/fragment_toner_create_imageview_close"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="25dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_close"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/fragment_toner_create_edittext_make"
+        android:layout_width="180dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="90dp"
+        android:backgroundTint="@color/white"
+        android:hint="@string/hint_printer_make"
+        android:inputType="textCapWords"
+        android:outlineAmbientShadowColor="@color/white"
+        android:textColor="@color/white"
+        android:textColorHint="@color/edittext_offwhite"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toStartOf="@+id/fragment_toner_create_guideline_vertical"
+        app:layout_constraintStart_toStartOf="@+id/fragment_toner_create_guideline_vertical"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/fragment_toner_create_edittext_model"
+        android:layout_width="180dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="25dp"
+        android:backgroundTint="@color/white"
+        android:hint="@string/hint_printer_model"
+        android:inputType="textCapWords"
+        android:textColor="@color/white"
+        android:textColorHint="@color/edittext_offwhite"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toStartOf="@+id/fragment_toner_create_guideline_vertical"
+        app:layout_constraintStart_toStartOf="@+id/fragment_toner_create_guideline_vertical"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_toner_create_edittext_make" />
+
+    <EditText
+        android:id="@+id/fragment_toner_create_edittext_tmodel"
+        android:layout_width="180dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="25dp"
+        android:backgroundTint="@color/white"
+        android:hint="@string/hint_toner_tmodel"
+        android:inputType="textCapWords"
+        android:textColor="@color/white"
+        android:textColorHint="@color/edittext_offwhite"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toStartOf="@+id/fragment_toner_create_guideline_vertical"
+        app:layout_constraintStart_toStartOf="@+id/fragment_toner_create_guideline_vertical"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_toner_create_edittext_model" />
+
+    <TextView
+        android:id="@+id/fragment_toner_create_textview_label_color"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="3dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginRight="15dp"
+        android:text="Uses:"
+        android:textAlignment="viewEnd"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/fragment_toner_create_guideline_vertical"
+        app:layout_constraintTop_toTopOf="@+id/fragment_toner_create_guideline_horizontal" />
+
+    <TextView
+        android:id="@+id/fragment_toner_create_textview_label_black"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginRight="15dp"
+        android:text="Black:"
+        android:textAlignment="viewEnd"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/fragment_toner_create_guideline_vertical"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_toner_create_textview_label_color" />
+
+    <TextView
+        android:id="@+id/fragment_toner_create_textview_label_cyan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginRight="15dp"
+        android:text="Cyan:"
+        android:textAlignment="viewEnd"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/fragment_toner_create_guideline_vertical"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_toner_create_textview_label_black" />
+
+    <TextView
+        android:id="@+id/fragment_toner_create_textview_label_yellow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginRight="15dp"
+        android:text="Yellow:"
+        android:textAlignment="viewEnd"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/fragment_toner_create_guideline_vertical"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_toner_create_textview_label_cyan" />
+
+    <TextView
+        android:id="@+id/fragment_toner_create_textview_label_magenta"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginRight="15dp"
+        android:text="Magenta:"
+        android:textAlignment="viewEnd"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/fragment_toner_create_guideline_vertical"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_toner_create_textview_label_yellow" />
+
+    <Spinner
+        android:id="@+id/fragment_toner_create_spinner_color"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="3dp"
+        app:layout_constraintStart_toStartOf="@+id/fragment_toner_create_guideline_vertical"
+        app:layout_constraintTop_toTopOf="@+id/fragment_toner_create_guideline_horizontal" />
+
+    <Spinner
+        android:id="@+id/fragment_toner_create_spinner_black"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="25dp"
+        app:layout_constraintStart_toStartOf="@+id/fragment_toner_create_guideline_vertical"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_toner_create_spinner_color" />
+
+    <Spinner
+        android:id="@+id/fragment_toner_create_spinner_cyan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="24dp"
+        android:inputType="number"
+        android:maxLength="2"
+        android:textColor="@color/white"
+        android:textColorHighlight="@color/white"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="@+id/fragment_toner_create_guideline_vertical"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_toner_create_spinner_black" />
+
+    <Spinner
+        android:id="@+id/fragment_toner_create_spinner_yellow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="25dp"
+        app:layout_constraintStart_toStartOf="@+id/fragment_toner_create_guideline_vertical"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_toner_create_spinner_cyan" />
+
+    <Spinner
+        android:id="@+id/fragment_toner_create_spinner_magenta"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintStart_toStartOf="@+id/fragment_toner_create_guideline_vertical"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_toner_create_spinner_yellow" />
+
+    <Button
+        android:id="@+id/fragment_toner_create_button_save"
+        android:layout_width="90dp"
+        android:layout_height="40dp"
+        android:layout_marginBottom="112dp"
+        android:background="@drawable/rounded_button"
+        android:backgroundTint="@color/white"
+        android:bottomLeftRadius="2dp"
+        android:bottomRightRadius="2dp"
+        android:text="@string/btn_save"
+        android:textColor="@color/black"
+        android:topLeftRadius="2dp"
+        android:topRightRadius="2dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/fragment_toner_create_guideline_vertical"
+        app:layout_constraintStart_toStartOf="@+id/fragment_toner_create_guideline_vertical" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/fragment_toner_create_guideline_horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="289dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/fragment_toner_create_guideline_vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

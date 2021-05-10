@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <FrameLayout
+        android:id="@+id/fragment_printer_detail_frame_banner"
+        android:layout_width="match_parent"
+        android:layout_height="260dp"
+        android:background="@drawable/rounded_frame"
+        android:backgroundTint="@color/purple"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <FrameLayout
+            android:id="@+id/fragment_printer_detail_frame_icon"
+            android:layout_width="165dp"
+            android:layout_height="165dp"
+            android:layout_gravity="center"
+            android:background="@drawable/circular_shape"
+            android:backgroundTint="@color/white">
+
+            <ImageView
+                android:id="@+id/fragment_printer_detail_imageview_icon"
+                android:layout_width="95dp"
+                android:layout_height="95dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_printer" />
+
+        </FrameLayout>
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/fragment_printer_detail_frame_status"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginEnd="120dp"
+        android:layout_marginRight="120dp"
+        android:layout_marginBottom="30dp"
+        android:background="@drawable/circular_shape"
+        android:backgroundTint="@color/status_red"
+        app:layout_constraintBottom_toBottomOf="@+id/fragment_printer_detail_frame_banner"
+        app:layout_constraintEnd_toEndOf="@+id/fragment_printer_detail_frame_banner">
+
+        <ImageView
+            android:id="@+id/fragment_printer_detail_imageview_status"
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:layout_gravity="center"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_close" />
+
+    </FrameLayout>
+
+    <ImageView
+        android:id="@+id/fragment_printer_detail_imageview_close"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="25dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_close"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/fragment_printer_detail_imageview_delete"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/ic_delete"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/fragment_printer_detail_textview_make"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="Konica C368"
+        android:textColor="@color/black"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_printer_detail_frame_banner" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/fragment_printer_detail_guideline_vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5"/>
+
+    <TextView
+        android:id="@+id/fragment_printer_detail_textview_label_serial"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginRight="15dp"
+        android:text="Serial:"
+        android:textAlignment="viewEnd"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toStartOf="@+id/fragment_printer_detail_guideline_vertical"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_printer_detail_textview_make" />
+
+    <TextView
+        android:id="@+id/fragment_printer_detail_textview_serial"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="30dp"
+        android:text="SDFHDKF"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="@+id/fragment_printer_detail_guideline_vertical"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_printer_detail_textview_make" />
+
+    <TextView
+        android:id="@+id/fragment_printer_detail_textview_label_owner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginRight="15dp"
+        android:text="Owner:"
+        android:textAlignment="viewEnd"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/fragment_printer_detail_guideline_vertical"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_printer_detail_textview_label_serial" />
+
+    <TextView
+        android:id="@+id/fragment_printer_detail_textview_owner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:text="Leased"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="@+id/fragment_printer_detail_guideline_vertical"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_printer_detail_textview_serial" />
+
+    <TextView
+        android:id="@+id/fragment_printer_detail_textview_label_dept"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginRight="15dp"
+        android:text="Department:"
+        android:textAlignment="viewEnd"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/fragment_printer_detail_guideline_vertical"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_printer_detail_textview_label_owner" />
+
+    <TextView
+        android:id="@+id/fragment_printer_detail_textview_dept"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:text="Engineering"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="@+id/fragment_printer_detail_guideline_vertical"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_printer_detail_textview_owner" />
+
+    <TextView
+        android:id="@+id/fragment_printer_detail_textview_label_location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginRight="15dp"
+        android:text="Location:"
+        android:textAlignment="viewEnd"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/fragment_printer_detail_guideline_vertical"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_printer_detail_textview_label_dept" />
+
+    <TextView
+        android:id="@+id/fragment_printer_detail_textview_location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:text="West Wing"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="@+id/fragment_printer_detail_guideline_vertical"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_printer_detail_textview_dept" />
+
+    <TextView
+        android:id="@+id/fragment_printer_detail_textview_label_floor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginRight="15dp"
+        android:text="Floor:"
+        android:textAlignment="viewEnd"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/fragment_printer_detail_guideline_vertical"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_printer_detail_textview_label_location" />
+
+    <TextView
+        android:id="@+id/fragment_printer_detail_textview_floor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:text="2nd"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="@+id/fragment_printer_detail_guideline_vertical"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_printer_detail_textview_location" />
+
+    <TextView
+        android:id="@+id/fragment_printer_detail_textview_label_ip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginRight="15dp"
+        android:text="IP:"
+        android:textAlignment="viewEnd"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/fragment_printer_detail_guideline_vertical"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_printer_detail_textview_label_floor" />
+
+    <TextView
+        android:id="@+id/fragment_printer_detail_textview_ip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:text="65"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="@+id/fragment_printer_detail_guideline_vertical"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_printer_detail_textview_floor" />
+
+    <Button
+        android:id="@+id/fragment_printer_detail_button_edit"
+        android:layout_width="145dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="60dp"
+        android:background="@drawable/rounded_button"
+        android:backgroundTint="@color/purple"
+        android:text="Edit Printer"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_printer_detail_textview_label_ip" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
