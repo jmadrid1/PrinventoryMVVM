@@ -1,15 +1,18 @@
 package com.example.prinventory_mvvm.ui.toner
 
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.prinventory_mvvm.R
+import com.example.prinventory_mvvm.databinding.FragmentTonerCreateBinding
+import com.example.prinventory_mvvm.databinding.FragmentTonerDetailBinding
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.fragment_toner_detail.*
 
 @AndroidEntryPoint
 class TonerDetailFragment : Fragment(R.layout.fragment_toner_detail) {
@@ -18,8 +21,20 @@ class TonerDetailFragment : Fragment(R.layout.fragment_toner_detail) {
         const val BUNDLE_KEY = "toner"
     }
 
+    private var _binding: FragmentTonerDetailBinding? = null
+    private val binding get() = _binding!!
+
     private val viewModel : TonerViewModel by viewModels()
     private val args : TonerDetailFragmentArgs by navArgs()
+
+    override fun onCreateView(
+            inflater: LayoutInflater,
+            container: ViewGroup?,
+            savedInstanceState: Bundle?
+    ): View? {
+        _binding = FragmentTonerDetailBinding.inflate(inflater, container, false)
+        return binding.root
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -27,16 +42,16 @@ class TonerDetailFragment : Fragment(R.layout.fragment_toner_detail) {
         onBackButtonPress()
         val toner = args.toner
 
-        fragment_toner_detail_imageview_close.setOnClickListener {
+        binding.fragmentTonerDetailImageviewClose.setOnClickListener {
             findNavController().popBackStack()
         }
 
-        fragment_toner_detail_imageview_delete.setOnClickListener {
+        binding.fragmentTonerDetailImageviewDelete.setOnClickListener {
             viewModel.deleteToner(toner)
             findNavController().popBackStack()
         }
 
-        fragment_toner_detail_button_edit.setOnClickListener {
+        binding.fragmentTonerDetailButtonEdit.setOnClickListener {
             val bundle = Bundle().apply {
                 putSerializable(BUNDLE_KEY, toner)
             }
@@ -60,11 +75,11 @@ class TonerDetailFragment : Fragment(R.layout.fragment_toner_detail) {
             viewModel.usesColor.postValue(true)
         }
 
-        fragment_toner_detail_textview_make.text = make
-        fragment_toner_detail_textview_black.text = black
-        fragment_toner_detail_textview_cyan.text = cyan
-        fragment_toner_detail_textview_yellow.text = yellow
-        fragment_toner_detail_textview_magenta.text = magenta
+        binding.fragmentTonerDetailTextviewMake.text = make
+        binding.fragmentTonerDetailTextviewBlack.text = black
+        binding.fragmentTonerDetailTextviewCyan.text = cyan
+        binding.fragmentTonerDetailTextviewYellow.text = yellow
+        binding.fragmentTonerDetailTextviewMagenta.text = magenta
     }
 
     private fun onBackButtonPress(){
@@ -78,13 +93,13 @@ class TonerDetailFragment : Fragment(R.layout.fragment_toner_detail) {
 
     private fun hideSpinner(usesColor: Boolean){
         if (usesColor){
-            fragment_toner_detail_frame_cyan.visibility = View.VISIBLE
-            fragment_toner_detail_frame_yellow.visibility = View.VISIBLE
-            fragment_toner_detail_frame_magenta.visibility = View.VISIBLE
+            binding.fragmentTonerDetailFrameCyan.visibility = View.VISIBLE
+            binding.fragmentTonerDetailFrameYellow.visibility = View.VISIBLE
+            binding.fragmentTonerDetailFrameMagenta.visibility = View.VISIBLE
         }else{
-            fragment_toner_detail_frame_cyan.visibility = View.GONE
-            fragment_toner_detail_frame_yellow.visibility = View.GONE
-            fragment_toner_detail_frame_magenta.visibility = View.GONE
+            binding.fragmentTonerDetailFrameCyan.visibility = View.GONE
+            binding.fragmentTonerDetailFrameYellow.visibility = View.GONE
+            binding.fragmentTonerDetailFrameMagenta.visibility = View.GONE
         }
     }
 

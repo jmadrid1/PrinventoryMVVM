@@ -3,7 +3,9 @@ package com.example.prinventory_mvvm.ui.toner
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.text.TextUtils
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.widget.Adapter
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
@@ -14,15 +16,28 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.prinventory_mvvm.R
+import com.example.prinventory_mvvm.databinding.FragmentTonerDetailBinding
+import com.example.prinventory_mvvm.databinding.FragmentTonerEditBinding
 import com.example.prinventory_mvvm.models.Toner
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.fragment_toner_edit.*
 
 @AndroidEntryPoint
 class TonerEditFragment : Fragment(R.layout.fragment_toner_edit) {
 
+    private var _binding: FragmentTonerEditBinding? = null
+    private val binding get() = _binding!!
+
     private val viewModel : TonerViewModel by viewModels()
     private val args : TonerEditFragmentArgs by navArgs()
+
+    override fun onCreateView(
+            inflater: LayoutInflater,
+            container: ViewGroup?,
+            savedInstanceState: Bundle?
+    ): View? {
+        _binding = FragmentTonerEditBinding.inflate(inflater, container, false)
+        return binding.root
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -34,7 +49,7 @@ class TonerEditFragment : Fragment(R.layout.fragment_toner_edit) {
 
         initViews(toner)
 
-        fragment_toner_edit_spinner_color.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+        binding.fragmentTonerEditSpinnerColor.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>, view: View, pos: Int, id: Long) {
                 if(pos == 0){
                     viewModel.usesColor.postValue(false)
@@ -49,11 +64,11 @@ class TonerEditFragment : Fragment(R.layout.fragment_toner_edit) {
     private fun initViews(toner: Toner){
         onBackButtonPress()
 
-        fragment_toner_edit_imageview_close.setOnClickListener {
+        binding.fragmentTonerEditImageviewClose.setOnClickListener {
             findNavController().popBackStack()
         }
 
-        fragment_toner_edit_button_update.setOnClickListener {
+        binding.fragmentTonerEditButtonUpdate.setOnClickListener {
             updateToner(toner)
         }
 
@@ -74,45 +89,45 @@ class TonerEditFragment : Fragment(R.layout.fragment_toner_edit) {
             viewModel.usesColor.postValue(true)
         }
 
-        fragment_toner_edit_edittext_make.setText(make)
-        fragment_toner_edit_edittext_model.setText(model)
-        fragment_toner_edit_edittext_tmodel.setText(tonerModel)
+        binding.fragmentTonerEditEdittextMake.setText(make)
+        binding.fragmentTonerEditEdittextModel.setText(model)
+        binding.fragmentTonerEditEdittextTmodel.setText(tonerModel)
     }
 
     @SuppressLint("ResourceType")
     private fun initSpinners(color: Int, black: Int, cyan: Int, yellow: Int, magenta: Int){
         val colorAdapter: ArrayAdapter<CharSequence> = ArrayAdapter.createFromResource(requireContext(), R.array.array_color_values, R.layout.spinner_dropdown_item)
         colorAdapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item)
-        fragment_toner_edit_spinner_color.adapter = colorAdapter
-        fragment_toner_edit_spinner_color.setSelection(color)
+        binding.fragmentTonerEditSpinnerColor.adapter = colorAdapter
+        binding.fragmentTonerEditSpinnerColor.setSelection(color)
 
         val tonerCountAdapter: ArrayAdapter<CharSequence> = ArrayAdapter.createFromResource(requireContext(), R.array.array_color_toner_count, R.layout.spinner_dropdown_item)
         tonerCountAdapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item)
 
-        fragment_toner_edit_spinner_black.adapter = tonerCountAdapter
-        fragment_toner_edit_spinner_cyan.adapter = tonerCountAdapter
-        fragment_toner_edit_spinner_yellow.adapter = tonerCountAdapter
-        fragment_toner_edit_spinner_magenta.adapter = tonerCountAdapter
+        binding.fragmentTonerEditSpinnerBlack.adapter = tonerCountAdapter
+        binding.fragmentTonerEditSpinnerBlack.adapter = tonerCountAdapter
+        binding.fragmentTonerEditSpinnerYellow.adapter = tonerCountAdapter
+        binding.fragmentTonerEditSpinnerMagenta.adapter = tonerCountAdapter
 
-        fragment_toner_edit_spinner_black.setSelection(black)
-        fragment_toner_edit_spinner_cyan.setSelection(cyan)
-        fragment_toner_edit_spinner_yellow.setSelection(yellow)
-        fragment_toner_edit_spinner_magenta.setSelection(magenta)
+        binding.fragmentTonerEditSpinnerBlack.setSelection(black)
+        binding.fragmentTonerEditSpinnerCyan.setSelection(cyan)
+        binding.fragmentTonerEditSpinnerYellow.setSelection(yellow)
+        binding.fragmentTonerEditSpinnerMagenta.setSelection(magenta)
     }
 
     private fun updateToner(toner: Toner){
-        checkTextField(fragment_toner_edit_edittext_make)
-        checkTextField(fragment_toner_edit_edittext_model)
-        checkTextField(fragment_toner_edit_edittext_tmodel)
+        checkTextField(binding.fragmentTonerEditEdittextMake)
+        checkTextField(binding.fragmentTonerEditEdittextModel)
+        checkTextField(binding.fragmentTonerEditEdittextTmodel)
 
-        val make : String = fragment_toner_edit_edittext_make.text.toString()
-        val model : String = fragment_toner_edit_edittext_model.text.toString()
-        val tonerModel : String = fragment_toner_edit_edittext_tmodel.text.toString()
-        val color : Int  = fragment_toner_edit_spinner_color.selectedItemPosition
-        val black : Int  = fragment_toner_edit_spinner_black.selectedItemPosition
-        val cyan : Int  = fragment_toner_edit_spinner_cyan.selectedItemPosition
-        val yellow : Int  = fragment_toner_edit_spinner_yellow.selectedItemPosition
-        val magenta : Int  = fragment_toner_edit_spinner_magenta.selectedItemPosition
+        val make : String = binding.fragmentTonerEditEdittextMake.text.toString()
+        val model : String = binding.fragmentTonerEditEdittextModel.text.toString()
+        val tonerModel : String = binding.fragmentTonerEditEdittextTmodel.text.toString()
+        val color : Int  = binding.fragmentTonerEditSpinnerColor.selectedItemPosition
+        val black : Int  = binding.fragmentTonerEditSpinnerBlack.selectedItemPosition
+        val cyan : Int  = binding.fragmentTonerEditSpinnerCyan.selectedItemPosition
+        val yellow : Int  = binding.fragmentTonerEditSpinnerYellow.selectedItemPosition
+        val magenta : Int  = binding.fragmentTonerEditSpinnerMagenta.selectedItemPosition
 
         toner.make = make
         toner.model = model
@@ -129,25 +144,25 @@ class TonerEditFragment : Fragment(R.layout.fragment_toner_edit) {
 
     private fun hideSpinners(usesColor: Boolean){
         if (usesColor){
-            fragment_toner_edit_textview_label_cyan.visibility = View.VISIBLE
-            fragment_toner_edit_textview_label_yellow.visibility = View.VISIBLE
-            fragment_toner_edit_textview_label_magenta.visibility = View.VISIBLE
+            binding.fragmentTonerEditTextviewLabelCyan.visibility = View.VISIBLE
+            binding.fragmentTonerEditTextviewLabelYellow.visibility = View.VISIBLE
+            binding.fragmentTonerEditTextviewLabelMagenta.visibility = View.VISIBLE
 
-            fragment_toner_edit_spinner_cyan.visibility = View.VISIBLE
-            fragment_toner_edit_spinner_yellow.visibility = View.VISIBLE
-            fragment_toner_edit_spinner_magenta.visibility = View.VISIBLE
+            binding.fragmentTonerEditSpinnerCyan.visibility = View.VISIBLE
+            binding.fragmentTonerEditSpinnerYellow.visibility = View.VISIBLE
+            binding.fragmentTonerEditSpinnerMagenta.visibility = View.VISIBLE
         }else{
-            fragment_toner_edit_textview_label_cyan.visibility = View.GONE
-            fragment_toner_edit_textview_label_yellow.visibility = View.GONE
-            fragment_toner_edit_textview_label_magenta.visibility = View.GONE
+            binding.fragmentTonerEditTextviewLabelCyan.visibility = View.GONE
+            binding.fragmentTonerEditTextviewLabelYellow.visibility = View.GONE
+            binding.fragmentTonerEditTextviewLabelMagenta.visibility = View.GONE
 
-            fragment_toner_edit_spinner_cyan.visibility = View.GONE
-            fragment_toner_edit_spinner_yellow.visibility = View.GONE
-            fragment_toner_edit_spinner_magenta.visibility = View.GONE
+            binding.fragmentTonerEditSpinnerCyan.visibility = View.GONE
+            binding.fragmentTonerEditSpinnerYellow.visibility = View.GONE
+            binding.fragmentTonerEditSpinnerMagenta.visibility = View.GONE
 
-            fragment_toner_edit_spinner_cyan.setSelection(0)
-            fragment_toner_edit_spinner_yellow.setSelection(0)
-            fragment_toner_edit_spinner_magenta.setSelection(0)
+            binding.fragmentTonerEditSpinnerCyan.setSelection(0)
+            binding.fragmentTonerEditSpinnerYellow.setSelection(0)
+            binding.fragmentTonerEditSpinnerMagenta.setSelection(0)
         }
     }
 

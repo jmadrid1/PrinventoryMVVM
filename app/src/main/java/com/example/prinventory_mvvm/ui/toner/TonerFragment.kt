@@ -1,7 +1,9 @@
 package com.example.prinventory_mvvm.ui.toner
 
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -9,9 +11,10 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.prinventory_mvvm.R
 import com.example.prinventory_mvvm.adapters.TonerAdapter
+import com.example.prinventory_mvvm.databinding.FragmentPrinterCreateBinding
+import com.example.prinventory_mvvm.databinding.FragmentTonerBinding
 import com.example.prinventory_mvvm.models.Toner
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.fragment_toner.*
 
 @AndroidEntryPoint
 class TonerFragment : Fragment(R.layout.fragment_toner) {
@@ -20,8 +23,20 @@ class TonerFragment : Fragment(R.layout.fragment_toner) {
         const val BUNDLE_KEY = "toner"
     }
 
+    private var _binding: FragmentTonerBinding? = null
+    private val binding get() = _binding!!
+
     private val viewModel : TonerViewModel by viewModels()
     private lateinit var tonerAdapter : TonerAdapter
+
+    override fun onCreateView(
+            inflater: LayoutInflater,
+            container: ViewGroup?,
+            savedInstanceState: Bundle?
+    ): View? {
+        _binding = FragmentTonerBinding.inflate(inflater, container, false)
+        return binding.root
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -41,7 +56,7 @@ class TonerFragment : Fragment(R.layout.fragment_toner) {
         }
     }
 
-    private fun setupRecyclerView() = fragment_toner_recyclerview.apply{
+    private fun setupRecyclerView() = binding.fragmentTonerRecyclerview.apply{
         tonerAdapter = TonerAdapter()
         adapter = tonerAdapter
         layoutManager = LinearLayoutManager(context)
@@ -49,13 +64,13 @@ class TonerFragment : Fragment(R.layout.fragment_toner) {
 
     private fun hideEmptyInventoryPrompts(toners: List<Toner>){
         if(toners.isEmpty()){
-            fragment_toner_textview_empty_msg_1.visibility = View.VISIBLE
-            fragment_toner_textview_empty_msg_2.visibility = View.VISIBLE
-            fragment_toner_recyclerview.visibility = View.GONE
+            binding.fragmentTonerTextviewEmptyMsg1.visibility = View.VISIBLE
+            binding.fragmentTonerTextviewEmptyMsg2.visibility = View.VISIBLE
+            binding.fragmentTonerRecyclerview.visibility = View.GONE
         }else {
-            fragment_toner_textview_empty_msg_1.visibility = View.GONE
-            fragment_toner_textview_empty_msg_2.visibility = View.GONE
-            fragment_toner_recyclerview.visibility = View.VISIBLE
+            binding.fragmentTonerTextviewEmptyMsg1.visibility = View.GONE
+            binding.fragmentTonerTextviewEmptyMsg2.visibility = View.GONE
+            binding.fragmentTonerRecyclerview.visibility = View.VISIBLE
         }
     }
 
