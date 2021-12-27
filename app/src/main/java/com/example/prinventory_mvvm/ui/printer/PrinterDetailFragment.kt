@@ -1,7 +1,9 @@
 package com.example.prinventory_mvvm.ui.printer
 
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
 import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
@@ -10,9 +12,9 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.prinventory_mvvm.R
+import com.example.prinventory_mvvm.databinding.FragmentPrinterDetailBinding
+import com.example.prinventory_mvvm.databinding.FragmentTonerBinding
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.fragment_printer_detail.*
-import kotlinx.android.synthetic.main.list_row_printer.view.*
 
 @AndroidEntryPoint
 class PrinterDetailFragment : Fragment(R.layout.fragment_printer_detail) {
@@ -21,8 +23,20 @@ class PrinterDetailFragment : Fragment(R.layout.fragment_printer_detail) {
         const val BUNDLE_KEY = "printer"
     }
 
+    private var _binding: FragmentPrinterDetailBinding? = null
+    private val binding get() = _binding!!
+
     private val viewModel : PrinterViewModel by viewModels()
     private val args : PrinterDetailFragmentArgs by navArgs()
+
+    override fun onCreateView(
+            inflater: LayoutInflater,
+            container: ViewGroup?,
+            savedInstanceState: Bundle?
+    ): View? {
+        _binding = FragmentPrinterDetailBinding.inflate(inflater, container, false)
+        return binding.root
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -30,11 +44,11 @@ class PrinterDetailFragment : Fragment(R.layout.fragment_printer_detail) {
         val printer = args.printer
         onBackButtonPress()
 
-        fragment_printer_detail_imageview_close.setOnClickListener {
+        binding.fragmentPrinterDetailImageviewClose.setOnClickListener {
             findNavController().popBackStack()
         }
 
-        fragment_printer_detail_imageview_delete.setOnClickListener {
+        binding.fragmentPrinterDetailImageviewDelete.setOnClickListener {
             viewModel.deletePrinter(printer)
             findNavController().popBackStack()
         }
@@ -51,37 +65,37 @@ class PrinterDetailFragment : Fragment(R.layout.fragment_printer_detail) {
 
         if(status == 0) {
             ViewCompat.setBackgroundTintList(
-                    fragment_printer_detail_frame_status,
+                    binding.fragmentPrinterDetailFrameStatus,
                     ContextCompat.getColorStateList(
                             view.context,
                             R.color.status_red
                     ))
 
-            fragment_printer_detail_imageview_status.setImageResource(R.drawable.ic_close)
+            binding.fragmentPrinterDetailImageviewStatus.setImageResource(R.drawable.ic_close)
         }else{
             ViewCompat.setBackgroundTintList(
-                    fragment_printer_detail_frame_status,
+                binding.fragmentPrinterDetailFrameStatus,
                     ContextCompat.getColorStateList(
                             view.context,
                             R.color.status_green
                     ))
-            fragment_printer_detail_imageview_status.setImageResource(R.drawable.ic_status_active)
+            binding.fragmentPrinterDetailImageviewStatus.setImageResource(R.drawable.ic_status_active)
         }
 
         if(make.equals("Not Specified") || model.equals("Not Specified")){
-            fragment_printer_detail_textview_make.text = printer.make
+            binding.fragmentPrinterDetailTextviewMake.text = printer.make
         }else{
-            fragment_printer_detail_textview_make.text = printer.make + " " + printer.model
+            binding.fragmentPrinterDetailTextviewMake.text = printer.make + " " + printer.model
         }
 
-        fragment_printer_detail_textview_serial.text = serial
-        fragment_printer_detail_textview_owner.text = owner
-        fragment_printer_detail_textview_dept.text =dept
-        fragment_printer_detail_textview_location.text = location
-        fragment_printer_detail_textview_floor.text = floor
-        fragment_printer_detail_textview_ip.text = ip
+        binding.fragmentPrinterDetailTextviewSerial.text = serial
+        binding.fragmentPrinterDetailTextviewOwner.text = owner
+        binding.fragmentPrinterDetailTextviewDept.text =dept
+        binding.fragmentPrinterDetailTextviewLocation.text = location
+        binding.fragmentPrinterDetailTextviewFloor.text = floor
+        binding.fragmentPrinterDetailTextviewIp.text = ip
 
-        fragment_printer_detail_button_edit.setOnClickListener {
+        binding.fragmentPrinterDetailButtonEdit.setOnClickListener {
             val bundle = Bundle().apply {
                 putSerializable(BUNDLE_KEY, printer)
             }
