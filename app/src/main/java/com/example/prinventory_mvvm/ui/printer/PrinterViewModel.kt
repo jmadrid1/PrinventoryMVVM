@@ -1,5 +1,6 @@
 package com.example.prinventory_mvvm.ui.printer
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.prinventory_mvvm.data.repositories.PrinterRepository
@@ -12,7 +13,7 @@ import javax.inject.Inject
 class PrinterViewModel @Inject constructor(
     private val printerRepository: PrinterRepository): ViewModel() {
 
-    val getPrinters = printerRepository.allPrinters()
+    val getPrinters : LiveData<List<Printer>> = printerRepository.allPrinters()
 
     fun insertPrinter(printer: Printer) = viewModelScope.launch {
         printerRepository.insertPrinter(printer)
@@ -21,4 +22,5 @@ class PrinterViewModel @Inject constructor(
     fun deletePrinter(printer: Printer) = viewModelScope.launch {
         printerRepository.deletePrinter(printer)
     }
+
 }
