@@ -5,57 +5,51 @@ import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.fragment.findNavController
-import androidx.navigation.ui.setupWithNavController
+import androidx.navigation.findNavController
 import com.example.prinventory_mvvm.R
+import com.example.prinventory_mvvm.databinding.ActivityTonerBinding
 import com.example.prinventory_mvvm.ui.printer.PrinterActivity
 import com.example.prinventory_mvvm.ui.vendor.VendorActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
-
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.activity_printer.*
-import kotlinx.android.synthetic.main.activity_toner.*
-import kotlinx.android.synthetic.main.activity_toner.activity_toolbar
-import kotlinx.android.synthetic.main.activity_toner.navHostFragment
-import kotlinx.android.synthetic.main.activity_toolbar.*
 
 @AndroidEntryPoint
 class TonerActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemSelectedListener {
 
+    private lateinit var binding: ActivityTonerBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_toner)
+        binding = ActivityTonerBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view)
 
-        activity_toolbar_add.setOnClickListener {
-            navHostFragment.findNavController().navigate(R.id.tonerCreateFragment)
+        val navController = findNavController(R.id.navHostFragment)
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            when (destination.id) {
+                R.id.tonerFragment -> { showToolbars() }
+                R.id.tonerCreateFragment -> { hideToolbars() }
+                R.id.tonerDetailFragment -> { hideToolbars() }
+                R.id.tonerEditFragment -> { hideToolbars() }
+            }
         }
 
-        toner_bottomnavigation.setupWithNavController(navHostFragment.findNavController())
+        binding.activityToolbar.activityToolbarAdd.setOnClickListener {
+            findNavController(R.id.navHostFragment).navigate(R.id.tonerCreateFragment)
+        }
 
-        navHostFragment.findNavController()
-                .addOnDestinationChangedListener { _, destination, _ ->
-                    when (destination.id) {
-                        R.id.tonerFragment -> {
-                            activity_toolbar.visibility = View.VISIBLE
-                            toner_bottomnavigation.visibility = View.VISIBLE
-                        }
-                        R.id.tonerCreateFragment -> {
-                            activity_toolbar.visibility = View.GONE
-                            toner_bottomnavigation.visibility = View.GONE
-                        }
-                        R.id.tonerDetailFragment -> {
-                            activity_toolbar.visibility = View.GONE
-                            toner_bottomnavigation.visibility = View.GONE
-                        }
-                        R.id.tonerEditFragment -> {
-                            activity_toolbar.visibility = View.GONE
-                            toner_bottomnavigation.visibility = View.GONE
-                        }
-                    }
-                }
+        binding.tonerBottomnavigation.menu.findItem(R.id.navigation_menu_toner).isChecked = true
+        binding.tonerBottomnavigation.setOnNavigationItemSelectedListener(this)
+    }
 
-        toner_bottomnavigation.menu.findItem(R.id.navigation_menu_toner).isChecked = true
-        toner_bottomnavigation!!.setOnNavigationItemSelectedListener(this)
+    private fun hideToolbars(){
+        binding.activityToolbar.root.visibility = View.GONE
+        binding.tonerBottomnavigation.visibility = View.GONE
+    }
+
+    private fun showToolbars(){
+        binding.activityToolbar.root.visibility = View.VISIBLE
+        binding.tonerBottomnavigation.visibility = View.VISIBLE
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
