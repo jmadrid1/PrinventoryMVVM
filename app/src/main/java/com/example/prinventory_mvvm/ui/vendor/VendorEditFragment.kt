@@ -3,7 +3,9 @@ package com.example.prinventory_mvvm.ui.vendor
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.text.TextUtils
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.EditText
 import androidx.activity.OnBackPressedCallback
@@ -12,10 +14,10 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.prinventory_mvvm.R
+import com.example.prinventory_mvvm.databinding.FragmentVendorDetailBinding
+import com.example.prinventory_mvvm.databinding.FragmentVendorEditBinding
 import com.example.prinventory_mvvm.models.Vendor
 import dagger.hilt.android.AndroidEntryPoint
-
-import kotlinx.android.synthetic.main.fragment_vendor_edit.*
 
 @AndroidEntryPoint
 class VendorEditFragment : Fragment(R.layout.fragment_vendor_edit) {
@@ -24,8 +26,20 @@ class VendorEditFragment : Fragment(R.layout.fragment_vendor_edit) {
         const val EDITTEXT_TAG_ZIP = "zip"
     }
 
+    private var _binding: FragmentVendorEditBinding? = null
+    private val binding get() = _binding!!
+
     private val viewModel : VendorViewModel by viewModels()
     private val args : VendorEditFragmentArgs by navArgs()
+
+    override fun onCreateView(
+            inflater: LayoutInflater,
+            container: ViewGroup?,
+            savedInstanceState: Bundle?
+    ): View? {
+        _binding = FragmentVendorEditBinding.inflate(inflater, container, false)
+        return binding.root
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -37,14 +51,14 @@ class VendorEditFragment : Fragment(R.layout.fragment_vendor_edit) {
     private fun initViews(vendor: Vendor){
         onBackButtonPress()
 
-        fragment_vendor_edit_imageview_close.setOnClickListener {
+        binding.fragmentVendorEditImageviewClose.setOnClickListener {
             findNavController().popBackStack()
         }
 
-        fragment_vendor_edit_button_submit.setOnClickListener {
+        binding.fragmentVendorEditButtonSubmit.setOnClickListener {
             updateVendor(vendor)
         }
-        fragment_vendor_edit_edittext_zipcode.tag = EDITTEXT_TAG_ZIP
+        binding.fragmentVendorEditEdittextZipcode.tag = EDITTEXT_TAG_ZIP
 
         val name = vendor.name
         val phone = vendor.phone
@@ -56,39 +70,39 @@ class VendorEditFragment : Fragment(R.layout.fragment_vendor_edit) {
 
         initSpinners(state!!)
 
-        fragment_vendor_edit_edittext_name.setText(name)
-        fragment_vendor_edit_edittext_phone.setText(phone)
-        fragment_vendor_edit_edittext_email.setText(email)
-        fragment_vendor_edit_edittext_street.setText(street)
-        fragment_vendor_edit_edittext_city.setText(city)
-        fragment_vendor_edit_edittext_zipcode.setText(zipcode)
+        binding.fragmentVendorEditEdittextName.setText(name)
+        binding.fragmentVendorEditEdittextPhone.setText(phone)
+        binding.fragmentVendorEditEdittextEmail.setText(email)
+        binding.fragmentVendorEditEdittextStreet.setText(street)
+        binding.fragmentVendorEditEdittextCity.setText(city)
+        binding.fragmentVendorEditEdittextZipcode.setText(zipcode)
     }
 
     @SuppressLint("ResourceType")
     private fun initSpinners(state: String){
         val statesAdapter: ArrayAdapter<CharSequence> = ArrayAdapter.createFromResource(requireContext(), R.array.array_states, R.layout.spinner_dropdown_item)
         statesAdapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item)
-        fragment_vendor_edit_spinner_states.adapter = statesAdapter
+        binding.fragmentVendorEditSpinnerStates.adapter = statesAdapter
 
         val statePosition = statesAdapter.getPosition(state)
-        fragment_vendor_edit_spinner_states.setSelection(statePosition)
+        binding.fragmentVendorEditSpinnerStates.setSelection(statePosition)
     }
 
     private fun updateVendor(vendor: Vendor){
-        checkTextField(fragment_vendor_edit_edittext_name)
-        checkTextField(fragment_vendor_edit_edittext_phone)
-        checkTextField(fragment_vendor_edit_edittext_email)
-        checkTextField(fragment_vendor_edit_edittext_street)
-        checkTextField(fragment_vendor_edit_edittext_city)
-        checkTextField(fragment_vendor_edit_edittext_zipcode)
+        checkTextField(binding.fragmentVendorEditEdittextName)
+        checkTextField(binding.fragmentVendorEditEdittextPhone)
+        checkTextField(binding.fragmentVendorEditEdittextEmail)
+        checkTextField(binding.fragmentVendorEditEdittextStreet)
+        checkTextField(binding.fragmentVendorEditEdittextCity)
+        checkTextField(binding.fragmentVendorEditEdittextZipcode)
 
-        val name : String = fragment_vendor_edit_edittext_name.text.toString()
-        val phone : String = fragment_vendor_edit_edittext_phone.text.toString()
-        val email : String = fragment_vendor_edit_edittext_email.text.toString()
-        val street : String = fragment_vendor_edit_edittext_street.text.toString()
-        val city : String  = fragment_vendor_edit_edittext_city.text.toString()
-        val state : String  = fragment_vendor_edit_spinner_states.selectedItem.toString()
-        val zip : String  = fragment_vendor_edit_edittext_zipcode.text.toString()
+        val name : String = binding.fragmentVendorEditEdittextName.text.toString()
+        val phone : String = binding.fragmentVendorEditEdittextPhone.text.toString()
+        val email : String = binding.fragmentVendorEditEdittextEmail.text.toString()
+        val street : String = binding.fragmentVendorEditEdittextStreet.text.toString()
+        val city : String  = binding.fragmentVendorEditEdittextCity.text.toString()
+        val state : String  = binding.fragmentVendorEditSpinnerStates.selectedItem.toString()
+        val zip : String  = binding.fragmentVendorEditEdittextZipcode.text.toString()
 
         vendor.name = name
         vendor.phone = phone
