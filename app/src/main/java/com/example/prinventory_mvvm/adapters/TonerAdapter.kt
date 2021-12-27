@@ -1,19 +1,17 @@
 package com.example.prinventory_mvvm.adapters
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.prinventory_mvvm.R
+import com.example.prinventory_mvvm.databinding.ListRowTonerBinding
 import com.example.prinventory_mvvm.models.Toner
-
-import kotlinx.android.synthetic.main.list_row_toner.view.*
 
 class TonerAdapter : RecyclerView.Adapter<TonerAdapter.TonerViewHolder>() {
 
-    inner class TonerViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
+    inner class TonerViewHolder(val binding: ListRowTonerBinding) : RecyclerView.ViewHolder(binding.root)
 
     private val diffCallback = object : DiffUtil.ItemCallback<Toner>() {
         override fun areItemsTheSame(oldItem: Toner, newItem: Toner): Boolean {
@@ -28,7 +26,8 @@ class TonerAdapter : RecyclerView.Adapter<TonerAdapter.TonerViewHolder>() {
     val differ = AsyncListDiffer(this, diffCallback)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TonerViewHolder {
-        return TonerViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.list_row_toner, parent, false))
+        val binding = ListRowTonerBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return TonerViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: TonerViewHolder, position: Int) {
@@ -40,18 +39,18 @@ class TonerAdapter : RecyclerView.Adapter<TonerAdapter.TonerViewHolder>() {
         val color = toner.color
 
         if(make.equals("Not Specified") || model.equals("Not Specified")){
-            holder.itemView.row_toner_make.text = toner.make
+            holder.binding.rowTonerMake.text = toner.make
         }else{
-            holder.itemView.row_toner_make.text = toner.make + " " + toner.model
+            holder.binding.rowTonerMake.text = toner.make + " " + toner.model
         }
 
         if(color == 0) {
-            holder.itemView.row_toner_color.setImageResource(R.drawable.ic_toner_bw)
+            holder.binding.rowTonerColor.setImageResource(R.drawable.ic_toner_bw)
         }else{
-            holder.itemView.row_toner_color.setImageResource(R.drawable.ic_toner_color)
+            holder.binding.rowTonerColor.setImageResource(R.drawable.ic_toner_color)
         }
 
-        holder.itemView.row_toner_tmodel.text = "Toner Model: " + tonerModel
+        holder.binding.rowTonerTmodel.text = "Toner Model: " + tonerModel
 
         holder.itemView.setOnClickListener {
             onItemClickListener?.let {
