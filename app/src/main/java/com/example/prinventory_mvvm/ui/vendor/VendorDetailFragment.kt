@@ -4,7 +4,9 @@ import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
@@ -12,8 +14,9 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.prinventory_mvvm.R
+import com.example.prinventory_mvvm.databinding.FragmentVendorCreateBinding
+import com.example.prinventory_mvvm.databinding.FragmentVendorDetailBinding
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.fragment_vendor_detail.*
 
 @AndroidEntryPoint
 class VendorDetailFragment : Fragment(R.layout.fragment_vendor_detail) {
@@ -22,8 +25,20 @@ class VendorDetailFragment : Fragment(R.layout.fragment_vendor_detail) {
         const val BUNDLE_KEY = "vendor"
     }
 
+    private var _binding: FragmentVendorDetailBinding? = null
+    private val binding get() = _binding!!
+
     private val viewModel : VendorViewModel by viewModels()
     private val args : VendorDetailFragmentArgs by navArgs()
+
+    override fun onCreateView(
+            inflater: LayoutInflater,
+            container: ViewGroup?,
+            savedInstanceState: Bundle?
+    ): View? {
+        _binding = FragmentVendorDetailBinding.inflate(inflater, container, false)
+        return binding.root
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -31,23 +46,23 @@ class VendorDetailFragment : Fragment(R.layout.fragment_vendor_detail) {
         onBackButtonPress()
         val vendor = args.vendor
 
-        fragment_vendor_detail_imageview_close.setOnClickListener {
+        binding.fragmentVendorDetailImageviewClose.setOnClickListener {
             findNavController().popBackStack()
         }
 
-        fragment_vendor_detail_imageview_delete.setOnClickListener {
+        binding.fragmentVendorDetailImageviewDelete.setOnClickListener {
             viewModel.deleteVendor(vendor)
             findNavController().popBackStack()
         }
 
-        fragment_vendor_detail_button_edit.setOnClickListener {
+        binding.fragmentVendorDetailButtonEdit.setOnClickListener {
             val bundle = Bundle().apply {
                 putSerializable(BUNDLE_KEY, vendor)
             }
             findNavController().navigate(R.id.action_vendorDetailFragment_to_vendorEditFragment, bundle)
         }
 
-        fragment_vendor_detail_imageview_phone.setOnClickListener {
+        binding.fragmentVendorDetailImageviewPhone.setOnClickListener {
             val phoneIntent = Intent(Intent.ACTION_DIAL)
             phoneIntent.data = Uri.parse("tel:" + vendor.phone)
             try {
@@ -63,7 +78,7 @@ class VendorDetailFragment : Fragment(R.layout.fragment_vendor_detail) {
             }
         }
 
-        fragment_vendor_detail_imageview_message.setOnClickListener {
+        binding.fragmentVendorDetailImageviewMessage.setOnClickListener {
             val emailIntent = Intent(Intent.ACTION_SENDTO)
             emailIntent.data = Uri.parse("mailto:" + vendor.email)
             try {
@@ -86,12 +101,12 @@ class VendorDetailFragment : Fragment(R.layout.fragment_vendor_detail) {
         val state = vendor.state
         val zip = vendor.zipcode
 
-        fragment_vendor_detail_textview_name.text = name
-        fragment_vendor_detail_textview_phone.text = phone
-        fragment_vendor_detail_textview_email.text = email
-        fragment_vendor_detail_textview_street.text = street
-        fragment_vendor_detail_textview_state.text = state
-        fragment_vendor_detail_textview_zip.text = zip
+        binding.fragmentVendorDetailTextviewName.text = name
+        binding.fragmentVendorDetailTextviewPhone.text = phone
+        binding.fragmentVendorDetailTextviewEmail.text = email
+        binding.fragmentVendorDetailTextviewStreet.text = street
+        binding.fragmentVendorDetailTextviewState.text = state
+        binding.fragmentVendorDetailTextviewZip.text = zip
     }
 
     private fun onBackButtonPress(){
