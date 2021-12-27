@@ -1,17 +1,20 @@
 package com.example.prinventory_mvvm.ui.vendor
 
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.prinventory_mvvm.R
 import com.example.prinventory_mvvm.adapters.VendorAdapter
+import com.example.prinventory_mvvm.databinding.FragmentVendorBinding
+import com.example.prinventory_mvvm.databinding.FragmentVendorDetailBinding
 import com.example.prinventory_mvvm.models.Vendor
 
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.fragment_vendor.*
 
 @AndroidEntryPoint
 class VendorFragment : Fragment(R.layout.fragment_vendor) {
@@ -20,8 +23,20 @@ class VendorFragment : Fragment(R.layout.fragment_vendor) {
         const val BUNDLE_KEY = "vendor"
     }
 
+    private var _binding: FragmentVendorBinding? = null
+    private val binding get() = _binding!!
+
     private val viewModel : VendorViewModel by viewModels()
     private lateinit var vendorAdapter : VendorAdapter
+
+    override fun onCreateView(
+            inflater: LayoutInflater,
+            container: ViewGroup?,
+            savedInstanceState: Bundle?
+    ): View? {
+        _binding = FragmentVendorBinding.inflate(inflater, container, false)
+        return binding.root
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -40,7 +55,7 @@ class VendorFragment : Fragment(R.layout.fragment_vendor) {
         }
     }
 
-    private fun setupRecyclerView() = fragment_vendor_recyclerview.apply{
+    private fun setupRecyclerView() = binding.fragmentVendorRecyclerview.apply{
         vendorAdapter = VendorAdapter()
         adapter = vendorAdapter
         layoutManager = LinearLayoutManager(context)
@@ -48,13 +63,13 @@ class VendorFragment : Fragment(R.layout.fragment_vendor) {
 
     private fun hideEmptyInventoryPrompts(vendors: List<Vendor>){
         if(vendors.isEmpty()){
-            fragment_vendor_textview_empty_msg_1.visibility = View.VISIBLE
-            fragment_vendor_textview_empty_msg_2.visibility = View.VISIBLE
-            fragment_vendor_recyclerview.visibility = View.GONE
+            binding.fragmentVendorTextviewEmptyMsg1.visibility = View.VISIBLE
+            binding.fragmentVendorTextviewEmptyMsg1.visibility = View.VISIBLE
+            binding.fragmentVendorRecyclerview.visibility = View.GONE
         }else {
-            fragment_vendor_textview_empty_msg_1.visibility = View.GONE
-            fragment_vendor_textview_empty_msg_2.visibility = View.GONE
-            fragment_vendor_recyclerview.visibility = View.VISIBLE
+            binding.fragmentVendorTextviewEmptyMsg1.visibility = View.GONE
+            binding.fragmentVendorTextviewEmptyMsg2.visibility = View.GONE
+            binding.fragmentVendorRecyclerview.visibility = View.VISIBLE
         }
     }
 
