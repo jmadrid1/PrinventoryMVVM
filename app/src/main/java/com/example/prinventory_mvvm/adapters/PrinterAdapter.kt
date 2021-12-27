@@ -9,12 +9,12 @@ import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.prinventory_mvvm.R
+import com.example.prinventory_mvvm.databinding.ListRowPrinterBinding
 import com.example.prinventory_mvvm.models.Printer
-import kotlinx.android.synthetic.main.list_row_printer.view.*
 
 class PrinterAdapter : RecyclerView.Adapter<PrinterAdapter.PrinterViewHolder>() {
 
-    inner class PrinterViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
+    inner class PrinterViewHolder(val binding: ListRowPrinterBinding) : RecyclerView.ViewHolder(binding.root)
 
     private val diffCallback = object : DiffUtil.ItemCallback<Printer>() {
         override fun areItemsTheSame(oldItem: Printer, newItem: Printer): Boolean {
@@ -29,7 +29,8 @@ class PrinterAdapter : RecyclerView.Adapter<PrinterAdapter.PrinterViewHolder>() 
     val differ = AsyncListDiffer(this, diffCallback)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PrinterViewHolder {
-        return PrinterViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.list_row_printer, parent, false))
+        val binding = ListRowPrinterBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return PrinterViewHolder(binding)
     }
 
     private var onItemClickListener : ((Printer) -> Unit)? = null
@@ -43,37 +44,37 @@ class PrinterAdapter : RecyclerView.Adapter<PrinterAdapter.PrinterViewHolder>() 
         val color = printer.color
 
         if(make.equals("Not Specified") || model.equals("Not Specified")){
-            holder.itemView.row_printer_make.text = printer.make
+            holder.binding.rowPrinterMake.text = printer.make
         }else{
-            holder.itemView.row_printer_make.text = printer.make + " " + printer.model
+            holder.binding.rowPrinterMake.text = printer.make + " " + printer.model
         }
 
-        holder.itemView.row_printer_dept.text = "Department: " + printer.dept
-        holder.itemView.row_printer_ip.text = "IP: " + printer.ip
+        holder.binding.rowPrinterDept.text = "Department: " + printer.dept
+        holder.binding.rowPrinterIp.text = "IP: " + printer.ip
 
         if(status == 0) {
             ViewCompat.setBackgroundTintList(
-                    holder.itemView.row_printer_frame_status,
+                    holder.binding.rowPrinterFrameStatus,
                     ContextCompat.getColorStateList(
-                            holder.itemView.row_printer_frame_status.context,
+                        holder.binding.rowPrinterFrameStatus.context,
                             R.color.status_red
                     ))
 
-            holder.itemView.row_printer_imageview_status.setImageResource(R.drawable.ic_close)
+            holder.binding.rowPrinterImageviewStatus.setImageResource(R.drawable.ic_close)
         }else{
             ViewCompat.setBackgroundTintList(
-                    holder.itemView.row_printer_frame_status,
+                    holder.binding.rowPrinterFrameStatus,
                     ContextCompat.getColorStateList(
-                            holder.itemView.row_printer_frame_status.context,
+                            holder.binding.rowPrinterFrameStatus.context,
                             R.color.status_green
                     ))
-            holder.itemView.row_printer_imageview_status.setImageResource(R.drawable.ic_status_active)
+            holder.binding.rowPrinterImageviewStatus.setImageResource(R.drawable.ic_status_active)
         }
 
         if(color == 0) {
-            holder.itemView.row_printer_color.setImageResource(R.drawable.ic_toner_bw)
+            holder.binding.rowPrinterColor.setImageResource(R.drawable.ic_toner_bw)
         }else{
-            holder.itemView.row_printer_color.setImageResource(R.drawable.ic_toner_color)
+            holder.binding.rowPrinterColor.setImageResource(R.drawable.ic_toner_color)
         }
 
         holder.itemView.setOnClickListener {
