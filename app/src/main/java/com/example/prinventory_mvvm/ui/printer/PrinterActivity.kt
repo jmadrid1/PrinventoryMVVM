@@ -5,79 +5,76 @@ import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.fragment.findNavController
-import androidx.navigation.ui.setupWithNavController
+import androidx.navigation.findNavController
 import com.example.prinventory_mvvm.R
+import com.example.prinventory_mvvm.databinding.ActivityPrinterBinding
 import com.example.prinventory_mvvm.ui.toner.TonerActivity
 import com.example.prinventory_mvvm.ui.vendor.VendorActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.activity_printer.*
-import kotlinx.android.synthetic.main.activity_printer.activity_toolbar
-import kotlinx.android.synthetic.main.activity_printer.navHostFragment
-import kotlinx.android.synthetic.main.activity_toner.*
-import kotlinx.android.synthetic.main.activity_toolbar.*
 
 @AndroidEntryPoint
 class PrinterActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemSelectedListener {
 
+    private lateinit var binding: ActivityPrinterBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_printer)
+        binding = ActivityPrinterBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view)
 
-        printer_bottomnavigation.setupWithNavController(navHostFragment.findNavController())
-
-        activity_toolbar_add.setOnClickListener {
-            navHostFragment.findNavController().navigate(R.id.printerCreateFragment)
+        val navController = findNavController(R.id.navHostFragment)
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            when (destination.id) {
+                R.id.printerFragment -> { showToolbars() }
+                R.id.printerCreateFragment -> { hideToolbars() }
+                R.id.printerDetailFragment -> { hideToolbars() }
+                R.id.printerEditFragment -> { hideToolbars() }
+            }
         }
 
-        navHostFragment.findNavController()
-                .addOnDestinationChangedListener { _, destination, _ ->
-                    when (destination.id) {
-                        R.id.printerFragment -> {
-                            activity_toolbar.visibility = View.VISIBLE
-                            printer_bottomnavigation.visibility = View.VISIBLE
-                        }
-                        R.id.printerCreateFragment -> {
-                            activity_toolbar.visibility = View.GONE
-                            printer_bottomnavigation.visibility = View.GONE
-                        }
-                        R.id.printerDetailFragment -> {
-                            activity_toolbar.visibility = View.GONE
-                            printer_bottomnavigation.visibility = View.GONE
-                        }
-                        R.id.printerEditFragment -> {
-                            activity_toolbar.visibility = View.GONE
-                            printer_bottomnavigation.visibility = View.GONE
-                        }
-                    }
-                }
+        binding.activityToolbar.activityToolbarAdd.setOnClickListener {
+            findNavController(R.id.navHostFragment).navigate(R.id.printerCreateFragment)
+        }
 
-        printer_bottomnavigation.menu.findItem(R.id.navigation_menu_printer).isChecked = true
-        printer_bottomnavigation!!.setOnNavigationItemSelectedListener(this)
+        binding.printerBottomnavigation.menu.findItem(R.id.navigation_menu_printer).isChecked = true
+        binding.printerBottomnavigation.setOnNavigationItemSelectedListener(this)
+    }
+
+    private fun hideToolbars(){
+        binding.activityToolbar.root.visibility = View.GONE
+        binding.printerBottomnavigation.visibility = View.GONE
+    }
+
+    private fun showToolbars(){
+        binding.activityToolbar.root.visibility = View.VISIBLE
+        binding.printerBottomnavigation.visibility = View.VISIBLE
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.navigation_menu_printer -> {
-            }
-
-            R.id.navigation_menu_toner -> {
-                val intent = Intent(this@PrinterActivity, TonerActivity::class.java)
-                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-                startActivity(intent)
-                overridePendingTransition(0, 0)
-            }
-            R.id.navigation_menu_vendor -> {
-                val intent = Intent(this@PrinterActivity, VendorActivity::class.java)
-                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-                startActivity(intent)
-                overridePendingTransition(0, 0)
-            }
+            R.id.navigation_menu_printer -> { }
+            R.id.navigation_menu_toner -> { navigateToToners() }
+            R.id.navigation_menu_vendor -> { navigateToVendors() }
         }
         return true
+    }
+
+    private fun navigateToToners(){
+        val intent = Intent(this@PrinterActivity, TonerActivity::class.java)
+        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+        startActivity(intent)
+        overridePendingTransition(0, 0)
+    }
+
+    private fun navigateToVendors(){
+        val intent = Intent(this@PrinterActivity, VendorActivity::class.java)
+        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+        startActivity(intent)
+        overridePendingTransition(0, 0)
     }
 
 }
