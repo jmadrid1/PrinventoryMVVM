@@ -3,7 +3,9 @@ package com.example.prinventory_mvvm.ui.vendor
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.text.TextUtils
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.EditText
 import androidx.activity.OnBackPressedCallback
@@ -11,9 +13,10 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.prinventory_mvvm.R
+import com.example.prinventory_mvvm.databinding.FragmentTonerBinding
+import com.example.prinventory_mvvm.databinding.FragmentVendorCreateBinding
 import com.example.prinventory_mvvm.models.Vendor
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.fragment_vendor_create.*
 
 @AndroidEntryPoint
 class VendorCreateFragment : Fragment(R.layout.fragment_vendor_create) {
@@ -22,7 +25,19 @@ class VendorCreateFragment : Fragment(R.layout.fragment_vendor_create) {
         const val EDITTEXT_TAG_ZIP = "zip"
     }
 
+    private var _binding: FragmentVendorCreateBinding? = null
+    private val binding get() = _binding!!
+
     private val viewModel : VendorViewModel by viewModels()
+
+    override fun onCreateView(
+            inflater: LayoutInflater,
+            container: ViewGroup?,
+            savedInstanceState: Bundle?
+    ): View? {
+        _binding = FragmentVendorCreateBinding.inflate(inflater, container, false)
+        return binding.root
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -33,14 +48,14 @@ class VendorCreateFragment : Fragment(R.layout.fragment_vendor_create) {
     private fun initViews(){
         onBackButtonPress()
 
-        fragment_vendor_create_imageview_close.setOnClickListener {
+        binding.fragmentVendorCreateImageviewClose.setOnClickListener {
             findNavController().popBackStack()
         }
 
-        fragment_vendor_create_button_submit.setOnClickListener {
+        binding.fragmentVendorCreateButtonSubmit.setOnClickListener {
             saveVendor()
         }
-        fragment_vendor_create_edittext_zipcode.tag = EDITTEXT_TAG_ZIP
+        binding.fragmentVendorCreateEdittextZipcode.tag = EDITTEXT_TAG_ZIP
 
         initSpinners()
     }
@@ -49,25 +64,25 @@ class VendorCreateFragment : Fragment(R.layout.fragment_vendor_create) {
     private fun initSpinners(){
         val statesAdapter: ArrayAdapter<CharSequence> = ArrayAdapter.createFromResource(requireContext(), R.array.array_states, R.layout.spinner_dropdown_item)
         statesAdapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item)
-        fragment_vendor_create_spinner_states.adapter = statesAdapter
-        fragment_vendor_create_spinner_states.setSelection(0)
+        binding.fragmentVendorCreateSpinnerStates.adapter = statesAdapter
+        binding.fragmentVendorCreateSpinnerStates.setSelection(0)
     }
 
     private fun saveVendor(){
-        checkTextField(fragment_vendor_create_edittext_name)
-        checkTextField(fragment_vendor_create_edittext_phone)
-        checkTextField(fragment_vendor_create_edittext_email)
-        checkTextField(fragment_vendor_create_edittext_street)
-        checkTextField(fragment_vendor_create_edittext_city)
-        checkTextField(fragment_vendor_create_edittext_zipcode)
+        checkTextField(binding.fragmentVendorCreateEdittextName)
+        checkTextField(binding.fragmentVendorCreateEdittextPhone)
+        checkTextField(binding.fragmentVendorCreateEdittextEmail)
+        checkTextField(binding.fragmentVendorCreateEdittextStreet)
+        checkTextField(binding.fragmentVendorCreateEdittextCity)
+        checkTextField(binding.fragmentVendorCreateEdittextZipcode)
 
-        val name : String = fragment_vendor_create_edittext_name.text.toString()
-        val phone : String = fragment_vendor_create_edittext_phone.text.toString()
-        val email : String = fragment_vendor_create_edittext_email.text.toString()
-        val street : String = fragment_vendor_create_edittext_street.text.toString()
-        val city : String  = fragment_vendor_create_edittext_city.text.toString()
-        val state : String  = fragment_vendor_create_spinner_states.selectedItem.toString()
-        val zip : String  = fragment_vendor_create_edittext_zipcode.text.toString()
+        val name : String = binding.fragmentVendorCreateEdittextName.text.toString()
+        val phone : String = binding.fragmentVendorCreateEdittextPhone.text.toString()
+        val email : String = binding.fragmentVendorCreateEdittextEmail.text.toString()
+        val street : String = binding.fragmentVendorCreateEdittextStreet.text.toString()
+        val city : String  = binding.fragmentVendorCreateEdittextCity.text.toString()
+        val state : String  = binding.fragmentVendorCreateSpinnerStates.selectedItem.toString()
+        val zip : String  = binding.fragmentVendorCreateEdittextZipcode.text.toString()
         
         val vendor = Vendor(
                 name = name,
